@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import HomeClient from "./HomeClient";
+
+export const metadata: Metadata = {
+  title: "Saurabh Gaikwad — Full-Stack & AI Developer",
+  alternates: { canonical: "/" },
+};
+
+export default function Page() {
+  return <HomeClient />;
+}
