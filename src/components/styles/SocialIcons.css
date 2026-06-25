@@ -26,13 +26,10 @@
   pointer-events: none;
   transform: translateX(-12px);
 }
-.social-icons:hover {
-  transition: 0.3s;
-  color: var(--backgroundColor);
-}
 .social-icons a:hover {
-  color: var(--backgroundColor);
-  /* transform: scale(1.2); */
+  /* was var(--backgroundColor) — the same colour as the page background, which
+     made the icon vanish on hover/tap. Use the accent colour instead. */
+  color: var(--accentColor);
 }
 .social-icons span {
   width: 50px;
