@@ -77,16 +77,18 @@
 .what-content p {
   font-size: 14px;
   line-height: 18px;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 0.7px;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .what-content h4 {
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 1px;
   margin: 0px;
   font-size: 14px;
-  opacity: 0.3;
+  /* was 0.3 — the description was almost invisible */
+  opacity: 0.7;
 }
 
 .what-content-in {
@@ -437,7 +439,7 @@
 @media only screen and (max-width: 550px) {
   .whatIDO {
     place-items: inherit;
-    align-items: start;
+    align-items: flex-start;
     justify-content: left;
   }
 
@@ -451,5 +453,26 @@
   .what-box h2 {
     font-size: 7rem;
     line-height: 6.8rem;
+  }
+}
+
+/* Mobile: make the What I Do content readable. The cascade above shrinks the
+   paragraph to 11px with a tight line-height; use a clean, larger body font. */
+@media only screen and (max-width: 768px) {
+  .what-content h4 {
+    font-family: "Plus Jakarta Sans", "Geist", sans-serif;
+    font-size: 15px !important;
+    line-height: 1.4;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+
+  .what-content p {
+    font-family: "Plus Jakarta Sans", "Geist", sans-serif;
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    color: rgba(255, 255, 255, 0.85);
   }
 }

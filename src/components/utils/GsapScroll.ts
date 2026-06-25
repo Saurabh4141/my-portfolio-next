@@ -157,12 +157,6 @@ export function setAllTimeline() {
       0
     )
     .fromTo(
-      ".career-info-box",
-      { opacity: 0 },
-      { opacity: 1, stagger: 0.1, duration: 0.5 },
-      0
-    )
-    .fromTo(
       ".career-dot",
       { animationIterationCount: "infinite" },
       {
@@ -172,6 +166,27 @@ export function setAllTimeline() {
       },
       0
     );
+
+  // Reveal each experience as it scrolls into view and keep it fully visible.
+  // (Previously the boxes' opacity was part of the scrubbed timeline above, so
+  // the item currently in view stayed dimmed until you scrolled past it.)
+  gsap.utils.toArray<HTMLElement>(".career-info-box").forEach((box) => {
+    gsap.fromTo(
+      box,
+      { opacity: 0, y: 24 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: box,
+          start: "top 88%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  });
 
   if (window.innerWidth > 1024) {
     careerTimeline.fromTo(

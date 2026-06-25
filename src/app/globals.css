@@ -189,3 +189,41 @@ body {
     font-size: 40px;
   }
 }
+
+/* Mobile: tighten the vertical spacing between sections (the desktop paddings
+   leave too much empty gap on a phone). */
+@media only screen and (max-width: 768px) {
+  .whatIDO {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .career-section {
+    padding-top: 40px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .services-section {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+
+  .cta-section {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .stats-section {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+
+  .techstack-new {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .contact-section {
+    margin-top: 20px !important;
+  }
+}

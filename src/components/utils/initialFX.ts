@@ -77,8 +77,13 @@ export function initialFX() {
   const landingText4 = new TextSplitter(".landing-h2-1", TextProps);
   const landingText5 = new TextSplitter(".landing-h2-2", TextProps);
 
-  LoopText(landingText2, landingText3);
-  LoopText(landingText4, landingText5);
+  // The role text rotates by sliding lines up/down. On mobile the subtitle sits
+  // over the 3D avatar and the partner lines don't exist, so the slide just
+  // bounces the text into the avatar and out of view. Keep it static on mobile.
+  if (window.innerWidth > 768) {
+    LoopText(landingText2, landingText3);
+    LoopText(landingText4, landingText5);
+  }
 }
 
 function LoopText(Text1: TextSplitter, Text2: TextSplitter) {

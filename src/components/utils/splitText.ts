@@ -11,7 +11,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
-  if (window.innerWidth < 900) return;
+  // Run on mobile too so sections get the same scroll-reveal transitions as
+  // desktop. (Below this width text-splitting framing breaks down.)
+  if (window.innerWidth < 360) return;
   const paras: NodeListOf<ParaElement> = document.querySelectorAll(".para");
   const titles: NodeListOf<ParaElement> = document.querySelectorAll(".title");
 

@@ -5,14 +5,17 @@
   gap: 8px;
   font-family: "Plus Jakarta Sans", "Geist", sans-serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.3px;
-  color: #d6ffe2;
-  background: rgba(46, 204, 113, 0.1);
-  border: 1px solid rgba(46, 204, 113, 0.4);
-  padding: 7px 14px;
+  color: #eaffe9;
+  background: rgba(46, 204, 113, 0.18);
+  border: 1px solid rgba(46, 204, 113, 0.7);
+  box-shadow: 0 0 22px rgba(46, 204, 113, 0.22);
+  padding: 7px 15px;
   border-radius: 30px;
   margin-bottom: 18px;
+  position: relative;
+  z-index: 11;
 }
 
 .available-dot {
@@ -41,9 +44,51 @@
   display: none;
 }
 
-/* Remove mobile photo and ensure 3D character is always hidden on mobile */
+/* Mobile: show the same 3D character model as desktop, responsively */
 @media only screen and (max-width: 768px) {
+  /* Render the 3D model behind the hero text, framed in the hero area */
   .character-model {
+    display: block !important;
+    position: absolute !important;
+    top: 0;
+    bottom: auto !important;
+    left: 50%;
+    transform: translateX(-50%) !important;
+    width: 100%;
+    height: 78svh !important;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* Drop the desktop solid backdrop block (it would cover the About section) */
+  .character-model::before {
+    display: none !important;
+  }
+
+  /* Fade the avatar's lower body into the page background so the subtitle that
+     sits over it stays readable (replaces the desktop scroll-driven fade). */
+  .character-model::after {
+    display: block !important;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 42%;
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      var(--backgroundColor) 85%
+    );
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* The pink backlight rim is faded out by the desktop scroll timeline, which
+     doesn't run on mobile — so it would otherwise stay as a pink band between
+     the avatar and the About section. Hide it on mobile. */
+  .character-rim {
     display: none !important;
   }
 
@@ -57,6 +102,23 @@
     flex-direction: column;
     padding: 0 15px;
     padding-bottom: 40px;
+  }
+
+  /* Spread name to the top and subtitle to the bottom so the model shows
+     centered between them, just like the desktop hero */
+  .landing-container {
+    min-height: 100vh;
+    justify-content: space-between;
+    position: relative;
+    /* Sit above the dark nav-fade overlay (z-index 12) so the hero content —
+       especially the "Available for work" badge near the top — isn't dimmed. */
+    z-index: 13;
+  }
+
+  /* Shrink the top fade on mobile so it doesn't wash out the badge / headings */
+  .nav-fade {
+    height: 48px;
+    background-image: linear-gradient(0deg, transparent, var(--backgroundColor) 90%);
   }
 
   /* Fix spacing between name and subtitle */
@@ -134,7 +196,8 @@
   .landing-h2-info {
     position: static !important;
     display: block;
-    width: auto;
+    width: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
     font-size: 20px !important;
     line-height: 1.5 !important;
@@ -143,6 +206,16 @@
     height: auto !important;
     transform: none !important;
     /* Remove any transforms */
+    /* Keep the subtitle readable where it sits over the 3D avatar */
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+  }
+
+  /* The desktop "150% wide" subtitle overflows the mobile screen and cuts off
+     the role text — constrain it and re-center. */
+  h2.landing-info-h2 {
+    width: 100% !important;
+    margin-left: 0 !important;
+    left: auto !important;
   }
 
   /* Specific styling for the distinct parts */
@@ -161,28 +234,9 @@
     display: none;
   }
 
-  /* Show mobile photo */
+  /* Mobile photo is replaced by the 3D model */
   .mobile-photo {
-    display: block;
-    position: relative !important;
-    width: 100%;
-    max-width: 380px;
-    margin: 0 auto;
-    z-index: 1;
-    order: 2;
-    /* Second: Photo */
-    /* Add fade mask to bottom */
-    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    pointer-events: none;
-    transform: none !important;
-  }
-
-  .mobile-photo img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 40px rgba(194, 164, 255, 0.4));
+    display: none !important;
   }
 }
 

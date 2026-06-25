@@ -28,6 +28,11 @@ const Scene = () => {
       const container = { width: rect.width, height: rect.height };
       const aspect = container.width / container.height;
       const scene = sceneRef.current;
+      // handleResize rebuilds the scroll timelines (killing other ScrollTriggers).
+      // Mobile browsers fire `resize` on every address-bar show/hide while
+      // scrolling — running it then would kill the section reveal animations and
+      // is wasteful, so only react to real width (orientation) changes.
+      let onWindowResize: (() => void) | null = null;
 
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
@@ -72,9 +77,13 @@ const Scene = () => {
               animations.startIntro();
             }, 2500);
           });
-          window.addEventListener("resize", () =>
-            handleResize(renderer, camera, canvasDiv, character)
-          );
+          let lastResizeWidth = window.innerWidth;
+          onWindowResize = () => {
+            if (window.innerWidth === lastResizeWidth) return;
+            lastResizeWidth = window.innerWidth;
+            handleResize(renderer, camera, canvasDiv, character);
+          };
+          window.addEventListener("resize", onWindowResize);
         }
       });
 
@@ -109,8 +118,28 @@ const Scene = () => {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+      // On mobile/tablet the model is positioned in the hero and scrolls away.
+      // Rendering WebGL every frame while it's off-screen competes with the
+      // scroll thread and makes scrolling janky, so pause rendering when the
+      // canvas isn't visible. On desktop (fixed, part of the scroll narrative)
+      // we keep rendering as before.
+      const pauseWhenHidden = window.innerWidth <= 1024;
+      let inView = true;
+      const visibilityObserver = new IntersectionObserver(
+        (entries) => {
+          inView = entries[0]?.isIntersecting ?? true;
+        },
+        { threshold: 0 }
+      );
+      if (canvasDiv.current) visibilityObserver.observe(canvasDiv.current);
+
       const animate = () => {
         requestAnimationFrame(animate);
+        if (pauseWhenHidden && !inView) {
+          // Consume elapsed time so the animation doesn't jump on resume.
+          clock.getDelta();
+          return;
+        }
         if (headBone) {
           handleHeadRotation(
             headBone,
@@ -131,11 +160,10 @@ const Scene = () => {
       animate();
       return () => {
         clearTimeout(debounce);
+        visibilityObserver.disconnect();
         scene.clear();
         renderer.dispose();
-        window.removeEventListener("resize", () =>
-          handleResize(renderer, camera, canvasDiv, character!)
-        );
+        if (onWindowResize) window.removeEventListener("resize", onWindowResize);
         if (canvasDiv.current) {
           canvasDiv.current.removeChild(renderer.domElement);
         }

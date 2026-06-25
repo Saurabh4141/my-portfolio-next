@@ -357,37 +357,71 @@
   box-shadow: 0 10px 30px rgba(194, 164, 255, 0.4);
 }
 
-/* Mobile: Stack work items vertically when GSAP pinning is disabled */
+/* Mobile: keep the same horizontal pinned scroll as desktop, with cards sized
+   to ~one-per-screen so they slide sideways as the user scrolls. */
 @media only screen and (max-width: 768px) {
   .work-section {
-    height: auto;
-    min-height: auto;
+    height: 74vh;
+    height: 74svh;
+  }
+
+  .work-container {
+    align-content: normal;
   }
 
   .work-flex {
-    flex-direction: column;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0;
+    height: auto;
+    /* Cards fill the section height so there's no empty gap after the short
+       last card before the Tech Stack section. */
+    align-items: stretch;
     margin-left: 0;
     padding-right: 0;
     gap: 0;
   }
 
   .work-box {
-    width: 100%;
-    max-width: 100%;
-    padding: 30px 15px;
-    border-right: none;
-    border-bottom: 1px solid #363636;
-    gap: 20px;
+    width: 84vw;
+    max-width: 360px;
+    height: auto;
+    padding: 14px 18px;
+    border-right: 1px solid #363636;
+    border-bottom: none;
+    gap: 10px;
+    /* Content at the top so the first project shows immediately under the
+       heading (no blank space), while the card itself fills the height. */
+    justify-content: flex-start;
   }
 
-  .work-flex .work-box:nth-child(even) {
-    flex-direction: column;
+  /* Tighten the spacing between the elements inside a card so the cards (and
+     therefore the whole pinned section) are shorter, without shrinking the
+     readable text. */
+  .work-info {
+    gap: 13px;
+  }
+
+  .work-tools-label {
+    margin-bottom: 8px;
+  }
+
+  .work-tags {
+    gap: 8px;
+  }
+
+  /* Top-align the CTA content too, so it lines up with the project cards
+     (all cards are equal height via align-items: stretch). */
+  .work-box-cta {
+    justify-content: flex-start;
   }
 
   .work-section h2 {
-    font-size: 36px;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    /* The heading is left-aligned, so it only needs to clear the "SG" logo and
+       the top fade (not the full-width navbar whose links sit on the right). */
+    margin-top: 60px;
+    margin-bottom: 14px;
   }
 
   .work-title h3 {
@@ -396,21 +430,42 @@
   }
 
   .work-name {
-    font-size: 22px;
+    font-size: 21px;
+    line-height: 1.25;
   }
 
   .work-desc {
-    font-size: 14px;
-    line-height: 22px;
+    font-family: "Plus Jakarta Sans", "Geist", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    color: rgba(255, 255, 255, 0.82);
   }
 
   .work-box-cta {
-    padding: 40px 20px;
-    border-bottom: none;
+    width: 84vw;
+    max-width: 360px;
+    padding: 18px 20px;
+    border-right: 1px solid #363636;
+  }
+
+  .see-all-works {
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
   }
 
   .see-all-works h3 {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .see-all-works p {
+    font-family: "Plus Jakarta Sans", "Geist", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 100%;
   }
 
   .see-all-works p {

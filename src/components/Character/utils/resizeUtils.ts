@@ -17,7 +17,12 @@ export default function handleResize(
   camera.updateProjectionMatrix();
   const workTrigger = ScrollTrigger.getById("work");
   ScrollTrigger.getAll().forEach((trigger) => {
-    if (trigger != workTrigger) {
+    // Preserve the work pin and the section reveal triggers; only the character
+    // / career timelines are rebuilt below. Killing the reveals here would leave
+    // not-yet-revealed sections stranded (invisible) after a resize.
+    const id = trigger.vars.id;
+    const isReveal = typeof id === "string" && id.startsWith("reveal");
+    if (trigger !== workTrigger && !isReveal) {
       trigger.kill();
     }
   });
