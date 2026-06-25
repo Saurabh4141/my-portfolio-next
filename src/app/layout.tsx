@@ -41,20 +41,11 @@ export const metadata: Metadata = {
     title: "Saurabh Gaikwad — Full-Stack & AI Developer",
     description: DESCRIPTION,
     siteName: "Saurabh Gaikwad",
-    images: [
-      {
-        url: "/images/mypicnbg.png",
-        width: 1000,
-        height: 1000,
-        alt: "Saurabh Gaikwad — Full-Stack & AI Developer",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Saurabh Gaikwad — Full-Stack & AI Developer",
     description: DESCRIPTION,
-    images: ["/images/mypicnbg.png"],
   },
 };
 
@@ -70,7 +61,6 @@ const personJsonLd = {
   "@type": "Person",
   name: "Saurabh Gaikwad",
   url: "https://www.gaikwadsaurabh.com/",
-  image: "https://www.gaikwadsaurabh.com/images/mypicnbg.png",
   jobTitle: "Full-Stack & AI Developer",
   email: "mailto:saurabhg4141@gmail.com",
   address: {

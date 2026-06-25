@@ -10,7 +10,7 @@
   justify-content: flex-start;
 }
 .contact-section h3 {
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 400;
   text-transform: uppercase;
   margin: 0;
@@ -24,7 +24,7 @@
   font-weight: 500;
   margin: 0;
   opacity: 0.6;
-  font-size: 14px;
+  font-size: 16px;
 }
 .contact-box {
   display: flex;
@@ -33,18 +33,18 @@
 .contact-flex p {
   margin-top: 8px;
   margin-bottom: 15px;
-  font-size: 14px;
+  font-size: 17px;
 }
 a.contact-social {
-  font-size: 16px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 8px;
+  font-size: 19px;
+  text-decoration: none;
+  margin-bottom: 10px;
 }
 .contact-box h2 {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
-  line-height: 22px;
+  line-height: 24px;
 }
 .contact-box h2 > span {
   color: var(--accentColor);
@@ -59,19 +59,19 @@ a.contact-social {
 }
 @media only screen and (min-width: 600px) {
   .contact-section h3 {
-    font-size: 40px;
+    font-size: 44px;
   }
   .contact-box h2 {
-    font-size: 18px;
+    font-size: 19px;
   }
   a.contact-social {
-    font-size: 18px;
+    font-size: 20px;
   }
   .contact-flex h4 {
-    font-size: 15px;
+    font-size: 17px;
   }
   .contact-flex p {
-    font-size: 15px;
+    font-size: 18px;
   }
 }
 @media only screen and (min-width: 900px) {

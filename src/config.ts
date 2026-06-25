@@ -189,7 +189,7 @@ export const config = {
   stats: [
     { value: "5+", label: "Years Experience" },
     { value: "20+", label: "Projects Delivered" },
-    { value: "30+", label: "Technologies" },
+    { value: "30+", label: "Skills" },
     { value: "10+", label: "Happy Clients" },
   ],
   services: [

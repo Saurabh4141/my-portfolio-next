@@ -219,7 +219,6 @@
   .work-section h2 {
     font-size: 60px;
     margin-bottom: 30px;
-    margin-top: 70px;
   }
 }
 
@@ -374,9 +373,9 @@
     flex: 1;
     min-height: 0;
     height: auto;
-    /* Cards fill the section height so there's no empty gap after the short
-       last card before the Tech Stack section. */
-    align-items: stretch;
+    /* Each card sizes to its own content (top-aligned) instead of stretching to
+       a common height. */
+    align-items: flex-start;
     margin-left: 0;
     padding-right: 0;
     gap: 0;
@@ -390,8 +389,6 @@
     border-right: 1px solid #363636;
     border-bottom: none;
     gap: 10px;
-    /* Content at the top so the first project shows immediately under the
-       heading (no blank space), while the card itself fills the height. */
     justify-content: flex-start;
   }
 
@@ -414,14 +411,6 @@
      (all cards are equal height via align-items: stretch). */
   .work-box-cta {
     justify-content: flex-start;
-  }
-
-  .work-section h2 {
-    font-size: 32px;
-    /* The heading is left-aligned, so it only needs to clear the "SG" logo and
-       the top fade (not the full-width navbar whose links sit on the right). */
-    margin-top: 60px;
-    margin-bottom: 14px;
   }
 
   .work-title h3 {

@@ -14,20 +14,11 @@ export const metadata: Metadata = {
     title: "Play Chess & Chat — Saurabh Gaikwad",
     description: DESCRIPTION,
     siteName: "Saurabh Gaikwad",
-    images: [
-      {
-        url: "/images/mypicnbg.png",
-        width: 1000,
-        height: 1000,
-        alt: "Saurabh Gaikwad — Full-Stack & AI Developer",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Play Chess & Chat — Saurabh Gaikwad",
     description: DESCRIPTION,
-    images: ["/images/mypicnbg.png"],
   },
 };
 
