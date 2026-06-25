@@ -370,11 +370,11 @@
 
   .work-flex {
     flex-direction: row;
-    flex: 1;
-    min-height: 0;
+    /* Size the row to its content (the tallest card) rather than filling the
+       section, so the bottom rail (.work-flex::after) sits at the bottom of the
+       card content instead of cutting through it. */
+    flex: none;
     height: auto;
-    /* Each card sizes to its own content (top-aligned) instead of stretching to
-       a common height. */
     align-items: flex-start;
     margin-left: 0;
     padding-right: 0;

@@ -1,7 +1,7 @@
 # Deploying to a Hostinger VPS (Node.js)
 
-This app runs as a real Next.js Node server (so the `/api/chat` chat backend
-works). Below is a clean, repeatable setup on a Hostinger VPS (Ubuntu).
+This app runs as a real Next.js Node server. Below is a clean, repeatable setup
+on a Hostinger VPS (Ubuntu).
 
 > Replace `gaikwadsaurabh.com` with your domain and `/var/www/portfolio` with
 > your chosen path.
@@ -35,10 +35,7 @@ cd /var/www/portfolio
 
 ## 4. Configure the environment
 
-```bash
-# server-side key for the chat (never exposed to the browser)
-printf 'GROQ_API_KEY=gsk_your_real_key_here\n' > .env.local
-```
+No environment variables are required for this build.
 
 ## 5. Build and start
 
@@ -105,8 +102,8 @@ pm2 reload portfolio
 
 - The 3D model, GSAP/Lenis animations, chess engine, and chat all run exactly as
   in development.
-- The 3D character model files (`public/models/character.enc`), Draco decoder,
-  and the WASM chess engine (`public/redoxchess.*`) are plain static files served
-  by Next from `public/` — no extra config needed.
+- The 3D character model files (`public/models/character.enc`) and the Draco
+  decoder are plain static files served by Next from `public/` — no extra config
+  needed.
 - Security headers (`X-Frame-Options`, etc.) are set in `next.config.mjs` and are
   served by the Node app automatically.

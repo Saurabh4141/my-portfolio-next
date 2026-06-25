@@ -11,11 +11,20 @@
   position: absolute;
   left: -20px;
   bottom: 20px;
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 8px;
   z-index: 999;
   padding: 10px;
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+}
+
+/* Hidden while the Contact section (which already lists these links) is in view */
+.social-icons.social-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-12px);
 }
 .social-icons:hover {
   transition: 0.3s;
@@ -118,5 +127,22 @@
   }
   .resume-button span {
     font-size: 23px;
+  }
+}
+
+/* Compact sticky social column for phones */
+@media only screen and (max-width: 767px) {
+  .social-icons {
+    left: -8px;
+    bottom: 16px;
+    gap: 2px;
+    padding: 6px;
+  }
+  .social-icons span {
+    width: 42px;
+    height: 42px;
+  }
+  .social-icons a {
+    font-size: 21px;
   }
 }

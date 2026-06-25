@@ -181,6 +181,10 @@ export const config = {
     github: "https://github.com/Saurabh4141",
     linkedin: "https://www.linkedin.com/in/saurabh-gaikwad-8a2a22225",
     instagram: "https://www.instagram.com/gaikwad_saurabh_14",
+    // WhatsApp number in international format (no +, spaces or dashes)
+    whatsapp: "917620123288",
+    whatsappMessage:
+      "Hi Saurabh! I came across your portfolio and would like to connect.",
   },
   availability: {
     status: true,
